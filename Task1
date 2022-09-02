@@ -1,0 +1,10 @@
+[org 0x100]
+
+jmp start
+ data: db 7
+loop:
+mov al,[data]
+rol al,4
+mov [data],al
+mov ax, 0x4c00
+int 0x21

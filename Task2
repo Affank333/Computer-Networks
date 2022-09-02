@@ -1,0 +1,36 @@
+[org 0x0100]
+jmp l1     
+data: dw   6,2,4,5
+swap: db   0 ; 
+mov cx,4
+    o1: 
+        mov  bx, 0 ;   
+        i1: 
+            mov  ax, [data + bx]
+            cmp  ax, [data + bx + 2] ;
+            jbe  noswap ;  
+              mov  dx, [data + bx + 2]
+                mov  [data + bx + 2], ax
+                mov  [data + bx], dx
+            noswap:
+            add  bx, 2
+            cmp  bx, 6
+            jne  i1
+         dec cx
+         jnz o1
+
+mov cx,4
+mov bx,0
+l3:
+    mov ax,[data+bx]
+    mov [data+bx],ax
+    add bx,2
+    dec cx
+    jnz l3 
+
+
+    mov  ax, 0x4c00
+    int  0x21
+
+
+
